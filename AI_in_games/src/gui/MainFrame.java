@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -57,7 +58,8 @@ public class MainFrame extends JFrame
 									this, 
 									roundLog, 
 									"Round ended!", 
-									JOptionPane.OK_OPTION);
+									JOptionPane.OK_OPTION, 
+									new ImageIcon("resources/images/dialog_icon.png"));
 		
 		if(gameManager.getCurrentGame().isOver())
 		{
@@ -65,7 +67,8 @@ public class MainFrame extends JFrame
 										this, 
 										gameManager.getCurrentGame().getGameResult(), 
 										"Game ended!", 
-										JOptionPane.OK_OPTION);
+										JOptionPane.OK_OPTION,
+										new ImageIcon("resources/images/dialog_icon.png"));
 			
 			gameManager.finishCurrentGame();
 		}
