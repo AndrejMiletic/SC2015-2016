@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import actions.ActionManager;
+import controller.GameManager;
 
 /**
  * Klasa koja predstavlja glavni prozor igre.
@@ -23,14 +25,51 @@ public class MainFrame extends JFrame
 	private static MainFrame instance = null;
 	
 	/**
-	 * Klasa koja centralizuje rukovanje akcijama GUI-ja.
+	 * Menadzer akcija GUI-ja.
 	 */
 	private ActionManager actionManager;
+	
+	/**
+	 * Menadzer igranja igre.
+	 */
+	private GameManager gameManager;
 	
 	/**
 	 * Traka sa magijama igraca.
 	 */
 	private SpellBar spellBar;
+	
+	public MainFrame() 
+	{
+		actionManager = new ActionManager();
+		gameManager = new GameManager();
+	}
+	
+	public void playNewRound(String playerSpell)
+	{
+		String roundLog;
+		
+		roundLog = gameManager.playNewRound(playerSpell);
+		
+		//promeni gui u odnosu na rezultat partije.
+		
+		JOptionPane.showMessageDialog(
+									this, 
+									roundLog, 
+									"Round ended!", 
+									JOptionPane.OK_OPTION);
+		
+		if(gameManager.getCurrentGame().isOver())
+		{
+			JOptionPane.showMessageDialog(
+										this, 
+										gameManager.getCurrentGame().getGameResult(), 
+										"Game ended!", 
+										JOptionPane.OK_OPTION);
+			
+			gameManager.finishCurrentGame();
+		}
+	}
 	
 	/**
 	 * Metoda koja inicijalizuje glavni prozor igre.
@@ -50,7 +89,6 @@ public class MainFrame extends JFrame
 		setMinimumSize(new Dimension(400, 400));
 		setLayout(new BorderLayout());	
 		
-		actionManager = new ActionManager();
 		spellBar = new SpellBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
 		

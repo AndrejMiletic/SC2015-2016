@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import gui.MainFrame;
+import helpers.SpellHelper;
+
 public class BlockAction extends AbstractAction{
 
 	private static final long serialVersionUID = 4933871410941594487L;
@@ -16,8 +19,8 @@ public class BlockAction extends AbstractAction{
 		putValue(SHORT_DESCRIPTION, "Block");
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		MainFrame.getInstance().playNewRound(SpellHelper.BLOCK);
 	}
 }

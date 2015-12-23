@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import gui.MainFrame;
+import helpers.SpellHelper;
+
 public class PhysicalAttackAction extends AbstractAction{
 
 	private static final long serialVersionUID = 6678095206674465787L;
@@ -16,9 +19,9 @@ public class PhysicalAttackAction extends AbstractAction{
 		putValue(SHORT_DESCRIPTION, "Physical Attack");
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		MainFrame.getInstance().playNewRound(SpellHelper.PHYSICAL_ATTACK);
 	}
 
 }

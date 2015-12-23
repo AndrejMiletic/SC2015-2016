@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import gui.MainFrame;
+import helpers.SpellHelper;
+
 public class SpellReflectAction extends AbstractAction{
 
 	private static final long serialVersionUID = -6095231766149072874L;
@@ -16,8 +19,8 @@ public class SpellReflectAction extends AbstractAction{
 		putValue(SHORT_DESCRIPTION, "Spell Reflect");
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		MainFrame.getInstance().playNewRound(SpellHelper.SPELL_REFLECT);
 	}
 }

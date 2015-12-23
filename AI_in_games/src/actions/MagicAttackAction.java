@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import gui.MainFrame;
+import helpers.SpellHelper;
+
 public class MagicAttackAction extends AbstractAction{
 
 	private static final long serialVersionUID = -3626176594107510375L;
@@ -16,8 +19,8 @@ public class MagicAttackAction extends AbstractAction{
 		putValue(SHORT_DESCRIPTION, "Magic Attack");
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		MainFrame.getInstance().playNewRound(SpellHelper.MAGICAL_ATTACK);
 	}
 }

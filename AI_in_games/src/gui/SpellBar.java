@@ -7,6 +7,11 @@ import javax.swing.SwingConstants;
 
 import actions.ActionManager;
 
+/**
+ * Klasa koja predstavlja traku sa magijama koje igrac moze koristiti.
+ * @author Milos Maric
+ *
+ */
 @SuppressWarnings("serial")
 public class SpellBar extends JToolBar
 {

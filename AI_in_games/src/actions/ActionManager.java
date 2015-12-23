@@ -11,8 +11,8 @@ public class ActionManager {
 	private BlockAction blockAction;
 	private MagicAttackAction magicAttackAction;
 	private SpellReflectAction spellReflectAction;
-	private HealAction healAction;
-	private SilenceAction silenceAction;
+	private RangeAttackAction healAction;
+	private ArmorAction silenceAction;
 	
 	public ActionManager() 
 	{
@@ -20,8 +20,8 @@ public class ActionManager {
 		blockAction = new BlockAction();
 		magicAttackAction = new MagicAttackAction();
 		spellReflectAction = new SpellReflectAction();
-		healAction = new HealAction();
-		silenceAction = new SilenceAction();
+		healAction = new RangeAttackAction();
+		silenceAction = new ArmorAction();
 	}
 	
 	public PhysicalAttackAction getPhysicalAttackAction() 
@@ -41,11 +41,11 @@ public class ActionManager {
 		return spellReflectAction;
 	}
 
-	public HealAction getHealAction() {
+	public RangeAttackAction getHealAction() {
 		return healAction;
 	}
 
-	public SilenceAction getSilenceAction() {
+	public ArmorAction getSilenceAction() {
 		return silenceAction;
 	}
 	
