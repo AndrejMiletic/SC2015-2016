@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import algorithm.NGramAlgorithm;
 import model.Game;
 
+/**
+ * Klasa koja centralizuje upravljanje igrama.
+ * @author Milos Maric
+ *
+ */
 public class GameManager 
 {
 	private ArrayList<Game> previousGames;
@@ -17,7 +22,7 @@ public class GameManager
 	}
 	
 	/**
-	 * Metoda koja simulira igru jedne runde.
+	 * Metoda koja simulira igru jedne runde unutar cele igre.
 	 * @param computerSpell - magija koju je kompjuter odabrao.
 	 * @param playerSpell - magija koju je igrac odabrao.
 	 * @return log runde ako igra nije gotova ili {@code null} ako je gotova.

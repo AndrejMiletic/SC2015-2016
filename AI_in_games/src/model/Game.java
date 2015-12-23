@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import helpers.SpellHelper;
 
+/**
+ * Klasa koja predstavlja jednu igru.
+ * @author Milos Maric
+ *
+ */
 public class Game implements Serializable
 {
 	private static final long serialVersionUID = 5932841429637107108L;
