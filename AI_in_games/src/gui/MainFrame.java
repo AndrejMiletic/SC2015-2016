@@ -15,7 +15,6 @@ import controller.GameManager;
 /**
  * Klasa koja predstavlja glavni prozor igre.
  * @author Milos Maric
- *
  */
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame
@@ -46,6 +45,11 @@ public class MainFrame extends JFrame
 		gameManager = new GameManager();
 	}
 	
+	/**
+	 * Metoda preko koje se pokrece igranje nove runde kada igrac klikne na dugme magije koju
+	 * je odabrao.
+	 * @param playerSpell - naziv magije koju je igrac odabrao.
+	 */
 	public void playNewRound(String playerSpell)
 	{
 		String roundLog;
@@ -60,6 +64,7 @@ public class MainFrame extends JFrame
 									"Round ended!", 
 									JOptionPane.OK_OPTION, 
 									new ImageIcon("resources/images/dialog_icon.png"));
+		spellBar.increaseCount(playerSpell);
 		
 		if(gameManager.getCurrentGame().isOver())
 		{
@@ -71,6 +76,7 @@ public class MainFrame extends JFrame
 										new ImageIcon("resources/images/dialog_icon.png"));
 			
 			gameManager.finishCurrentGame();
+			spellBar.resetSpellBar();
 		}
 	}
 	
@@ -107,6 +113,10 @@ public class MainFrame extends JFrame
 
 	public SpellBar getSpellBar() {
 		return spellBar;
+	}
+	
+	public GameManager getGameManager() {
+		return gameManager;
 	}
 
 	public static MainFrame getInstance() {

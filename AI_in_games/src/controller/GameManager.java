@@ -3,22 +3,30 @@ package controller;
 import java.util.ArrayList;
 
 import algorithm.NGramAlgorithm;
+import dataProviders.FileDataProvider;
 import model.Game;
 
 /**
  * Klasa koja centralizuje upravljanje igrama.
  * @author Milos Maric
- *
  */
 public class GameManager 
 {
+	/**
+	 * Kolekcija igara koje su do sada odigrane.
+	 */
 	private ArrayList<Game> previousGames;
+	
+	/**
+	 * Trenutno aktivna igra.
+	 */
 	private Game currentGame;
 	
 	public GameManager() 
-	{
+	{		
+		currentGame = new Game();
 		previousGames = new ArrayList<Game>();
-		currentGame = new Game();		
+		previousGames = FileDataProvider.readGamesFromFile();
 	}
 	
 	/**

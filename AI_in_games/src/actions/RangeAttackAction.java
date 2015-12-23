@@ -8,6 +8,11 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import helpers.SpellHelper;
 
+/**
+ * Akcija koja predstavlja magiju 'Range Attack'.
+ * @author Milos Maric
+ *
+ */
 public class RangeAttackAction extends AbstractAction{
 
 	private static final long serialVersionUID = -5273642380892034983L;

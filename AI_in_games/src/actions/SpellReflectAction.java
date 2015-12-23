@@ -8,6 +8,11 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import helpers.SpellHelper;
 
+/**
+ * Akcija koja predstavlja magiju 'Spell Reflect'.
+ * @author Milos Maric
+ *
+ */
 public class SpellReflectAction extends AbstractAction{
 
 	private static final long serialVersionUID = -6095231766149072874L;

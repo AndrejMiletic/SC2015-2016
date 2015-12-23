@@ -8,6 +8,11 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import helpers.SpellHelper;
 
+/**
+ * Akcija koja predstavlja magiju 'Armor'.
+ * @author Milos Maric
+ *
+ */
 public class ArmorAction extends AbstractAction{
 
 	private static final long serialVersionUID = 8661293154583242652L;

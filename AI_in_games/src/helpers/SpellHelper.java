@@ -5,16 +5,43 @@ import java.util.ArrayList;
 /**
  * Klasa koja enkapsulira sve magije koje igrac moze koristiti.
  * @author Milos Maric
- *
  */
 public class SpellHelper 
 {	
+	/**
+	 * Naziv magije finickog napada.
+	 */
 	public static final String PHYSICAL_ATTACK = "Physical Attack";
+	
+	/**
+	 * Naziv magije blokiranja.
+	 */
 	public static final String BLOCK = "Block";
+	
+	/**
+	 * Naziv magije magicnog napada.
+	 */
 	public static final String MAGICAL_ATTACK = "Magical Attack";
+	
+	/**
+	 * Naziv magije refleksije magije.
+	 */
 	public static final String SPELL_REFLECT = "Spell Reflect";
+	
+	/**
+	 * Naziv magije napada lukom i strelom iz daljine.
+	 */
 	public static final String RANGE_ATTACK = "Range Attack";
+	
+	/**
+	 * Naziv magije ocvrscavanja oklopa.
+	 */
 	public static final String ARMOR = "Armor";
+	
+	/**
+	 * Maksimalan broj koriscenja iste magije u jednoj igri.
+	 */
+	public static final int MAX_SPELL_COUNT = 3;
 	
 	/**
 	 * Metoda koja za prosledjeni naziv magije vraca onu koja joj kontrira.

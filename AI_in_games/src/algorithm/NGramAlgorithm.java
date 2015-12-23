@@ -5,6 +5,9 @@ import java.util.Random;
 
 import helpers.SpellHelper;
 
+/**
+ * @author Andrej Miletic
+ */
 public class NGramAlgorithm 
 {
 	public static String getComputersSpell()

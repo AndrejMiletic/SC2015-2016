@@ -8,6 +8,11 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import helpers.SpellHelper;
 
+/**
+ * Akcija koja predstavlja magiju 'Magic Attack'.
+ * @author Milos Maric
+ *
+ */
 public class MagicAttackAction extends AbstractAction{
 
 	private static final long serialVersionUID = -3626176594107510375L;

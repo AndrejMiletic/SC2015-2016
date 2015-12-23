@@ -8,6 +8,11 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import helpers.SpellHelper;
 
+/**
+ * Akcija koja predstavlja magiju 'Block'.
+ * @author Milos Maric
+ *
+ */
 public class BlockAction extends AbstractAction{
 
 	private static final long serialVersionUID = 4933871410941594487L;
