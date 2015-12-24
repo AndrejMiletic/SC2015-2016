@@ -158,6 +158,7 @@ public class Game implements Serializable
 		rules.append("\nIf a Magic Attack is Spell Reflected, the attacker gets " + Game.reflectDamage + " damage.");
 		rules.append("\nIf a Range Attack and Armor are used, the damage is fully mitigated.\n");
 		rules.append("\nMaximum number of rounds is " + Game.maxRounds + ".");
+		rules.append("\nSame spell can be used only " + SpellHelper.MAX_SPELL_COUNT + " times in the same game.");
 		rules.append("\nGame ends if Player or Computer (or both) lose all health points, or if the maximum "
 				+ "number of rounds is played.");
 		rules.append("\n***************************************************Enjoy!***************************************************");

@@ -26,7 +26,7 @@ public class GameRulesAction extends AbstractAction
 		JOptionPane.showMessageDialog(
 									MainFrame.getInstance(), 
 									Game.getGameRules(), 
-									"Round ended!", 
+									"Game rules!", 
 									JOptionPane.OK_OPTION, 
 									new ImageIcon("resources/images/dialog_icon.png"));
 	}
