@@ -92,12 +92,12 @@ public class Game implements Serializable
 		currentRound++;
 		playerSpells.add(playerSpell);
 		computerSpells.add(computerSpell);
+		roundLog.append("\nRound " + currentRound + ":");
 		roundLog.append("\nPlayers spell: ");
 		roundLog.append(playerSpell);
 		roundLog.append("\nComputers spell: ");
-		roundLog.append(computerSpell);
-		roundLog.append("\nRound " + currentRound + ":\n");
-		roundLog.append(executeRound(computerSpell, playerSpell));		
+		roundLog.append(computerSpell);		
+		roundLog.append("\n" + executeRound(computerSpell, playerSpell));		
 		
 		return roundLog.toString();
 	}
@@ -202,10 +202,7 @@ public class Game implements Serializable
 		
 		playersHP = Math.max(0, playersHP);
 		computersHP = Math.max(0, computersHP);	
-		
-		retVal += "\nPlayers HP : " + playersHP;
-		retVal += "\nComputers HP : " + computersHP;
-		
+				
 		if(isOver())
 		{
 			pronounceTheWinner();
@@ -408,4 +405,13 @@ public class Game implements Serializable
 		return computerSpells;
 	}
 
+	
+	public int getPlayersHP() {
+		return playersHP;
+	}
+
+
+	public int getComputersHP() {
+		return computersHP;
+	}
 }

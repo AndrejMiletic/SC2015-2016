@@ -7,7 +7,6 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import actions.ActionManager;
 import controller.GameManager;
@@ -45,48 +44,15 @@ public class MainFrame extends JFrame
 	 */
 	private GameRulesToolBar rulesBar;
 	
+	/**
+	 * panel na kom se prikazuje tok igre.
+	 */
+	private MainGamePanel gamePanel; 
+	
 	public MainFrame() 
 	{
 		actionManager = new ActionManager();
 		gameManager = new GameManager();
-	}
-	
-	/**
-	 * Metoda preko koje se pokrece igranje nove runde kada igrac klikne na dugme magije koju
-	 * je odabrao.
-	 * @param playerSpell - naziv magije koju je igrac odabrao.
-	 */
-	public void playNewRound(String playerSpell)
-	{
-		String roundLog, gameEndingLog;
-		Game currentGame;
-		
-		roundLog = gameManager.playNewRound(playerSpell);
-		
-		//promeni gui u odnosu na rezultat partije.
-		
-		JOptionPane.showMessageDialog(
-									this, 
-									roundLog, 
-									"Round ended!", 
-									JOptionPane.OK_OPTION, 
-									new ImageIcon("resources/images/dialog_icon.png"));
-		spellBar.increaseCount(playerSpell);
-		
-		if(gameManager.getCurrentGame().isOver())
-		{
-			currentGame = gameManager.getCurrentGame();
-			gameEndingLog = currentGame.toString(); 
-			JOptionPane.showMessageDialog(
-										this, 
-										gameEndingLog, 
-										"Game summary!", 
-										JOptionPane.OK_OPTION,
-										new ImageIcon("resources/images/dialog_icon.png"));
-			
-			gameManager.finishCurrentGame();
-			spellBar.resetSpellBar();
-		}
 	}
 	
 	/**
@@ -110,10 +76,52 @@ public class MainFrame extends JFrame
 		spellBar = new SpellBar();
 		rulesBar = new GameRulesToolBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
+		gamePanel = new MainGamePanel();
 		
 		add(rulesBar, BorderLayout.NORTH);
-		add(new JPanel(), BorderLayout.CENTER);
+		add(gamePanel, BorderLayout.CENTER);
 		add(spellBar, BorderLayout.SOUTH);
+	}
+	
+
+	/**
+	 * Metoda preko koje se pokrece igranje nove runde kada igrac klikne na dugme magije koju
+	 * je odabrao.
+	 * @param playerSpell - naziv magije koju je igrac odabrao.
+	 */
+	public void playNewRound(String playerSpell)
+	{
+		String roundLog, gameEndingLog;
+		Game currentGame;
+		
+		roundLog = gameManager.playNewRound(playerSpell);
+		gamePanel.showRoundResults(roundLog);
+		
+		/*
+		JOptionPane.showMessageDialog(
+									this, 
+									roundLog, 
+									"Round ended!", 
+									JOptionPane.OK_OPTION, 
+									new ImageIcon("resources/images/dialog_icon.png"));
+		*/
+		spellBar.increaseCount(playerSpell);
+		
+		if(gameManager.getCurrentGame().isOver())
+		{
+			currentGame = gameManager.getCurrentGame();
+			gameEndingLog = currentGame.toString(); 
+			JOptionPane.showMessageDialog(
+										this, 
+										gameEndingLog, 
+										"Game summary!", 
+										JOptionPane.OK_OPTION,
+										new ImageIcon("resources/images/dialog_icon.png"));
+			
+			gameManager.finishCurrentGame();
+			spellBar.resetSpellBar();
+			gamePanel.resetMainGamePanel();
+		}
 	}
 	
 	public ActionManager getActionManager() {
