@@ -8,13 +8,32 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * Glavni deo igre koji sadrzi log-er rundi i zivotne poene igraca.
+ * @author Milos Maric
+ */
 public class MainGamePanel extends JPanel
 {
 	private static final long serialVersionUID = 5726251690753894453L;
 	
+	/**
+	 * Panel igraca.
+	 */
 	private UserPanel playersPanel;
+	
+	/**
+	 * Panel racunara.
+	 */
 	private UserPanel computersPanel;
+	
+	/**
+	 * Tekstualno polje u kom se ispisuje log rundi.
+	 */
 	private JTextArea gameLogArea;
+	
+	/**
+	 * Polje koje cuva prethodne log-ove rundi.
+	 */
 	private String gameLog;
 	
 	public MainGamePanel() 
@@ -27,6 +46,9 @@ public class MainGamePanel extends JPanel
 		initialize();
 	}
 	
+	/**
+	 * Metoda koja inicijalizuje GUI elemente.
+	 */
 	private void initialize() 
 	{
 		Dimension userPanelSize;
@@ -50,6 +72,10 @@ public class MainGamePanel extends JPanel
 		add(playersPanel, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Metoda koja menja izgled GUI elemenata na osnovu odigrane runde.
+	 * @param roundLog - tekst koji predstavlja log runde.
+	 */
 	public void showRoundResults(String roundLog)
 	{
 		addRoundLog(roundLog);
@@ -57,6 +83,9 @@ public class MainGamePanel extends JPanel
 		computersPanel.adjustHP();
 	}
 	
+	/**
+	 * Metoda koja pri pocinjanju nove igre resetuje sve GUI elemente.
+	 */
 	public void resetMainGamePanel()
 	{
 		gameLogArea.setText("");

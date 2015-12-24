@@ -12,11 +12,23 @@ import javax.swing.JProgressBar;
 
 import model.Game;
 
+/**
+ * Panel koji sadrzi labelu naziva igraca i njegovu traku sa zivotnim poenima.
+ * @author Milos Maric
+ *
+ */
 public class UserPanel extends JPanel
 {
 	private static final long serialVersionUID = 6109087851447197609L;
 
+	/**
+	 * Labela koja sadrzi naziv igraca.
+	 */
 	private JLabel playersNameLabel;
+	
+	/**
+	 * Traka sa zivotnim poenima igraca ili racunara.
+	 */
 	private JProgressBar hpBar;
 	
 	public UserPanel(String name) 
@@ -27,6 +39,10 @@ public class UserPanel extends JPanel
 		initialize(name);
 	}
 
+	/**
+	 * Metoda koja postavlja GUI elemente u inicijalno stanje.
+	 * @param name - naziv igraca.
+	 */
 	private void initialize(String name) 
 	{
 		JPanel playersPanel;
@@ -47,6 +63,9 @@ public class UserPanel extends JPanel
 		add(hpBar);
 	}
 
+	/**
+	 * Metoda koja menja vrednost zivotnih poena na GUI-ju.
+	 */
 	public void adjustHP() 
 	{
 		Game currentGame;
@@ -65,11 +84,18 @@ public class UserPanel extends JPanel
 		changeHPBar(hpToSet);
 	}
 	
+	/**
+	 * Metoda koja resetuje traku sa zivotnim poenima.
+	 */
 	public void resetHPBar()
 	{
 		changeHPBar(100);
 	}
 	
+	/**
+	 * Metoda koja stavlja broj zivotnih poena na GUI-ju na odredjeni broj.
+	 * @param HP - broj zivotnih poena.
+	 */
 	public void changeHPBar(int HP)
 	{
 		hpBar.setValue(HP);
