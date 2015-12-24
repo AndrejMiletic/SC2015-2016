@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import gui.MainFrame;
 import helpers.SpellHelper;
+import model.Game;
 
 /**
  * Akcija koja predstavlja magiju 'Magic Attack'.
@@ -21,7 +22,7 @@ public class MagicAttackAction extends AbstractAction{
 	{
 		super("Magic Attack");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/magic_attack_icon.png"));
-		putValue(SHORT_DESCRIPTION, "Magic Attack");
+		putValue(SHORT_DESCRIPTION, "Magic Attack - deals " + Game.attackDamage + " damage.");
 	}
 	
 	public void actionPerformed(ActionEvent e) 

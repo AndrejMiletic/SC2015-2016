@@ -21,7 +21,7 @@ public class ArmorAction extends AbstractAction{
 	{
 		super("Armor");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/armor_icon.png"));
-		putValue(SHORT_DESCRIPTION, "Armor");
+		putValue(SHORT_DESCRIPTION, "Armor - mitigates a Range Attack");
 	}
 	
 	public void actionPerformed(ActionEvent e) 

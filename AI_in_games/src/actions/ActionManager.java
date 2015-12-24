@@ -13,6 +13,7 @@ public class ActionManager {
 	private SpellReflectAction spellReflectAction;
 	private RangeAttackAction rangeAttackAction;
 	private ArmorAction armorAction;
+	private GameRulesAction gameRulesAction;
 	
 	public ActionManager() 
 	{
@@ -22,6 +23,7 @@ public class ActionManager {
 		spellReflectAction = new SpellReflectAction();
 		rangeAttackAction = new RangeAttackAction();
 		armorAction = new ArmorAction();
+		gameRulesAction = new GameRulesAction();
 	}
 	
 	public PhysicalAttackAction getPhysicalAttackAction() 
@@ -48,4 +50,10 @@ public class ActionManager {
 	public ArmorAction getArmorAction() {
 		return armorAction;
 	}
+
+	public GameRulesAction getGameRulesAction() {
+		return gameRulesAction;
+	}
+	
+	
 }

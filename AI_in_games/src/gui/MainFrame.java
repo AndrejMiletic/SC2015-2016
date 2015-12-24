@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import actions.ActionManager;
 import controller.GameManager;
+import model.Game;
 
 /**
  * Klasa koja predstavlja glavni prozor igre.
@@ -39,6 +40,11 @@ public class MainFrame extends JFrame
 	 */
 	private SpellBar spellBar;
 	
+	/**
+	 * Traka sa dugmetom za prikaz pravila igre.
+	 */
+	private GameRulesToolBar rulesBar;
+	
 	public MainFrame() 
 	{
 		actionManager = new ActionManager();
@@ -52,7 +58,8 @@ public class MainFrame extends JFrame
 	 */
 	public void playNewRound(String playerSpell)
 	{
-		String roundLog;
+		String roundLog, gameEndingLog;
+		Game currentGame;
 		
 		roundLog = gameManager.playNewRound(playerSpell);
 		
@@ -68,10 +75,12 @@ public class MainFrame extends JFrame
 		
 		if(gameManager.getCurrentGame().isOver())
 		{
+			currentGame = gameManager.getCurrentGame();
+			gameEndingLog = currentGame.toString(); 
 			JOptionPane.showMessageDialog(
 										this, 
-										gameManager.getCurrentGame().getGameResult(), 
-										"Game ended!", 
+										gameEndingLog, 
+										"Game summary!", 
 										JOptionPane.OK_OPTION,
 										new ImageIcon("resources/images/dialog_icon.png"));
 			
@@ -99,11 +108,11 @@ public class MainFrame extends JFrame
 		setLayout(new BorderLayout());	
 		
 		spellBar = new SpellBar();
+		rulesBar = new GameRulesToolBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
 		
-		add(new JPanel(), BorderLayout.NORTH);
+		add(rulesBar, BorderLayout.NORTH);
 		add(new JPanel(), BorderLayout.CENTER);
-		add(new JPanel(), BorderLayout.WEST);
 		add(spellBar, BorderLayout.SOUTH);
 	}
 	

@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import gui.MainFrame;
 import helpers.SpellHelper;
+import model.Game;
 
 /**
  * Akcija koja predstavlja magiju 'Spell Reflect'.
@@ -21,7 +22,8 @@ public class SpellReflectAction extends AbstractAction{
 	{
 		super("Spell Reflect");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/spell_reflect_icon.png"));
-		putValue(SHORT_DESCRIPTION, "Spell Reflect");
+		putValue(SHORT_DESCRIPTION, "Spell Reflect - reflects a Magic Attack dealing " + 
+									Game.reflectDamage + " damage back to the attacker.");
 	}
 	
 	public void actionPerformed(ActionEvent e) 

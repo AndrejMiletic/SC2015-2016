@@ -14,17 +14,57 @@ public class Game implements Serializable
 {
 	private static final long serialVersionUID = 5932841429637107108L;
 	
+	/**
+	 * Nazivi magija koje je igrac iskoristio u igri.
+	 */
 	private ArrayList<String> playerSpells;
-	private ArrayList<String> computerSpells;
-	private int winner;
 	
+	/**
+	 * Nazivi magija koje je racunar iskoristio u igri.
+	 */
+	private ArrayList<String> computerSpells;
+	
+	/**
+	 * Informacija o pobedniku igre:
+	 * 		-1 : racunar
+	 * 		0  : nereseno
+	 * 		1  : igrac
+	 */
+	private int winner;
+
+	/**
+	 * Trenutna kolicina zivotnih poena koje poseduje igrac.
+	 */
 	private transient int playersHP;
+	
+	/**
+	 * Trenutna kolicina zivotnih poena koje poseduje racunar.
+	 */
 	private transient int computersHP;
+	
+	/**
+	 * Trenutni broj runde.
+	 */
 	private transient int currentRound;
 	
+	/**
+	 * Kolicina stete koja se nanosi bilo kojim napadom.
+	 */
 	public static final transient int attackDamage = 30;
+	
+	/**
+	 * Kolicina stete koju napadac prima ako mu je fizicki napad blokiran.
+	 */
 	public static final transient int blockDamage = 10;
+	
+	/**
+	 * Kolicina stete koju napadac prima ako mu je magicni napad reflektovan.
+	 */
 	public static final transient int reflectDamage = 15;
+	
+	/**
+	 * Maksimalan broj rundi u jednoj igri.
+	 */
 	public static final transient int maxRounds = 10;
 	
 	public Game() 
@@ -92,7 +132,40 @@ public class Game implements Serializable
 	{
 		return playersHP == 0 || computersHP == 0 || currentRound == Game.maxRounds;
 	}
-	
+
+	/**
+	 * Metoda koja vraca recima ispisana pravila igre.
+	 * @return pravila igre.
+	 */
+	public static String getGameRules() 
+	{
+		StringBuilder rules;
+		
+		rules = new StringBuilder();
+		
+		rules.append("\n***************************************************Game rules***************************************************");
+		rules.append("\nAt the start of a game, both player and computer have 100 health points.");
+		rules.append("\nEach round both choose a spell without knowing which spell the other one chose.");
+		rules.append("\nOnce the spells are chosen, they collide and the result affects both players and computers"
+				+ "healts points.");
+		rules.append("\n\nEvery spell has its counter:");
+		rules.append("\nPhysical Attack - Block");
+		rules.append("\nMagical Attack - Spell Reflect");
+		rules.append("\nRange Attack - Armor\n");
+		rules.append("\nSpell collision results: ");
+		rules.append("\nAny kind of attack deals " + Game.attackDamage + " damage.");
+		rules.append("\nIf a Physical Attack is Blocked, the attacker gets " + Game.blockDamage + " damage.");
+		rules.append("\nIf a Magic Attack is Spell Reflected, the attacker gets " + Game.reflectDamage + " damage.");
+		rules.append("\nIf a Range Attack and Armor are used, the damage is fully mitigated.\n");
+		rules.append("\nMaximum number of rounds is " + Game.maxRounds + ".");
+		rules.append("\nGame ends if Player or Computer (or both) lose all health points, or if the maximum "
+				+ "number of rounds is played.");
+		rules.append("\n***************************************************Enjoy!***************************************************");
+		
+		
+		return rules.toString();
+	}
+
 	private String executeRound(String computerSpell, String playerSpell) 
 	{		
 		String retVal;
@@ -305,7 +378,6 @@ public class Game implements Serializable
 		
 		return result;
 	}
-	
 
 	@Override
 	public String toString() 
@@ -327,17 +399,13 @@ public class Game implements Serializable
 		
 		return gameLog.toString();
 	}
-
-	
 	
 	public ArrayList<String> getPlayerSpells() {
 		return playerSpells;
 	}
-
 	
 	public ArrayList<String> getComputerSpells() {
 		return computerSpells;
 	}
 
-	
 }

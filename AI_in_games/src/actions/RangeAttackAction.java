@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import gui.MainFrame;
 import helpers.SpellHelper;
+import model.Game;
 
 /**
  * Akcija koja predstavlja magiju 'Range Attack'.
@@ -21,7 +22,7 @@ public class RangeAttackAction extends AbstractAction{
 	{
 		super("Range Attack");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/range_attack_icon.png"));
-		putValue(SHORT_DESCRIPTION, "Range Attack");
+		putValue(SHORT_DESCRIPTION, "Range Attack - deals " + Game.attackDamage + " damage");
 	}
 	
 	public void actionPerformed(ActionEvent e) 
