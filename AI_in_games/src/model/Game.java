@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import helpers.GameLogic;
 import helpers.SpellHelper;
 
 /**
@@ -46,26 +47,6 @@ public class Game implements Serializable
 	 * Trenutni broj runde.
 	 */
 	private transient int currentRound;
-	
-	/**
-	 * Kolicina stete koja se nanosi bilo kojim napadom.
-	 */
-	public static final transient int attackDamage = 30;
-	
-	/**
-	 * Kolicina stete koju napadac prima ako mu je fizicki napad blokiran.
-	 */
-	public static final transient int blockDamage = 10;
-	
-	/**
-	 * Kolicina stete koju napadac prima ako mu je magicni napad reflektovan.
-	 */
-	public static final transient int reflectDamage = 15;
-	
-	/**
-	 * Maksimalan broj rundi u jednoj igri.
-	 */
-	public static final transient int maxRounds = 10;
 	
 	public Game() 
 	{
@@ -130,7 +111,7 @@ public class Game implements Serializable
 	 */
 	public boolean isOver()
 	{
-		return playersHP == 0 || computersHP == 0 || currentRound == Game.maxRounds;
+		return playersHP == 0 || computersHP == 0 || currentRound == GameLogic.maxRounds;
 	}
 
 	/**
@@ -153,12 +134,12 @@ public class Game implements Serializable
 		rules.append("\nMagical Attack - Spell Reflect");
 		rules.append("\nRange Attack - Armor\n");
 		rules.append("\nSpell collision results: ");
-		rules.append("\nAny kind of attack deals " + Game.attackDamage + " damage.");
-		rules.append("\nIf a Physical Attack is Blocked, the attacker gets " + Game.blockDamage + " damage.");
-		rules.append("\nIf a Magic Attack is Spell Reflected, the attacker gets " + Game.reflectDamage + " damage.");
+		rules.append("\nAny kind of attack deals " + GameLogic.attackDamage + " damage.");
+		rules.append("\nIf a Physical Attack is Blocked, the attacker gets " + GameLogic.blockDamage + " damage.");
+		rules.append("\nIf a Magic Attack is Spell Reflected, the attacker gets " + GameLogic.reflectDamage + " damage.");
 		rules.append("\nIf a Range Attack and Armor are used, the damage is fully mitigated.\n");
-		rules.append("\nMaximum number of rounds is " + Game.maxRounds + ".");
-		rules.append("\nSame spell can be used only " + SpellHelper.MAX_SPELL_COUNT + " times in the same game.");
+		rules.append("\nMaximum number of rounds is " + GameLogic.maxRounds + ".");
+		rules.append("\nSame spell can be used only " + SpellHelper.MAX_SPELL_COUNT + " times in the same GameLogic.");
 		rules.append("\nGame ends if Player or Computer (or both) lose all health points, or if the maximum "
 				+ "number of rounds is played.");
 		rules.append("\n***************************************************Enjoy!***************************************************");
@@ -170,34 +151,33 @@ public class Game implements Serializable
 	private String executeRound(String computerSpell, String playerSpell) 
 	{		
 		String retVal;
-		
-		
+				
 		retVal = "";
 			
 		switch (computerSpell) 
 		{
 			case SpellHelper.PHYSICAL_ATTACK:
-				retVal += computerDidPA(playerSpell);
+				retVal += GameLogic.computerDidPA(playerSpell, this);
 			break;
 	
 			case SpellHelper.BLOCK:
-				retVal += computerBlocked(playerSpell);
+				retVal += GameLogic.computerBlocked(playerSpell, this);
 			break;
 			
 			case SpellHelper.MAGICAL_ATTACK:
-				retVal += computerDidMA(playerSpell);
+				retVal += GameLogic.computerDidMA(playerSpell, this);
 			break;
 			
 			case SpellHelper.SPELL_REFLECT:
-				retVal += computerReflected(playerSpell);
+				retVal += GameLogic.computerReflected(playerSpell, this);
 			break;
 			
 			case SpellHelper.RANGE_ATTACK:
-				retVal += computerDidRA(playerSpell);
+				retVal += GameLogic.computerDidRA(playerSpell, this);
 			break;
 			
 			case SpellHelper.ARMOR:
-				retVal += computerUsedArmor(playerSpell);
+				retVal += GameLogic.computerUsedArmor(playerSpell, this);
 			break;
 		}
 		
@@ -229,154 +209,16 @@ public class Game implements Serializable
 		}
 	}
 
-	private String computerUsedArmor(String playerSpell) 
+	public void decreasePlayersHP(int damage)
 	{
-		String result;
-		
-		switch (playerSpell) 
-		{	
-			case SpellHelper.RANGE_ATTACK:
-				result = "Noone took any damage.";
-			break;
-			case SpellHelper.PHYSICAL_ATTACK:
-			case SpellHelper.MAGICAL_ATTACK:
-				result = "Computer took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-			break;
-			default:
-				result = "Noone took any damage.";
-			break;
-		}
-		
-		return result;
+		this.playersHP -= damage;
 	}
-
-	private String computerDidRA(String playerSpell) 
-	{
-		String result;
-		
-		switch (playerSpell) 
-		{
-			case SpellHelper.ARMOR:
-				result = "Noone took any damage.";
-			break;
 	
-			case SpellHelper.MAGICAL_ATTACK:
-			case SpellHelper.PHYSICAL_ATTACK:
-			case SpellHelper.RANGE_ATTACK:
-				result = "Both took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-				playersHP -= Game.attackDamage;
-			break;			
-			default:
-				result = "Player took " + Game.attackDamage + " damage.";
-				playersHP -= Game.attackDamage;
-			break;
-		}
-		
-		return result;
-	}
-
-	private String computerReflected(String playerSpell) 
+	public void decreaseComputersHP(int damage)
 	{
-		String result;
-		
-		switch (playerSpell) 
-		{	
-			case SpellHelper.MAGICAL_ATTACK:
-				result = "Player took " + Game.reflectDamage + " damage.";
-				playersHP -= Game.reflectDamage;
-			break;
-			case SpellHelper.PHYSICAL_ATTACK:
-			case SpellHelper.RANGE_ATTACK:
-				result = "Computer took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-			break;
-			default:
-				result = "Noone took any damage.";
-			break;
-		}
-		
-		return result;
+		this.computersHP -= damage;
 	}
-
-	private String computerDidMA(String playerSpell) 
-	{
-		String result;
-		
-		switch (playerSpell) 
-		{
-			case SpellHelper.SPELL_REFLECT:
-				result = "Computer took " + Game.reflectDamage + " damage from reflection.";
-				computersHP -= Game.reflectDamage;
-			break;
 	
-			case SpellHelper.MAGICAL_ATTACK:
-			case SpellHelper.PHYSICAL_ATTACK:
-			case SpellHelper.RANGE_ATTACK:
-				result = "Both took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-				playersHP -= Game.attackDamage;
-			break;			
-			default:
-				result = "Player took " + Game.attackDamage + " damage.";
-				playersHP -= Game.attackDamage;
-			break;
-		}
-		
-		return result;
-	}
-
-	private String computerBlocked(String playerSpell) 
-	{
-		String result;
-		
-		switch (playerSpell) 
-		{	
-			case SpellHelper.PHYSICAL_ATTACK:
-				result = "Player took " + Game.blockDamage + " damage.";
-				playersHP -= Game.blockDamage;
-			break;
-			case SpellHelper.MAGICAL_ATTACK:
-			case SpellHelper.RANGE_ATTACK:
-				result = "Computer took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-			break;
-			default:
-				result = "Noone took any damage.";
-			break;
-		}
-		
-		return result;
-	}
-
-	private String computerDidPA(String playerSpell) 
-	{
-		String result;
-		
-		switch (playerSpell) 
-		{
-			case SpellHelper.BLOCK:
-				result = "Computer took " + Game.blockDamage + " damage from block.";
-				computersHP -= Game.blockDamage;
-			break;
-	
-			case SpellHelper.MAGICAL_ATTACK:
-			case SpellHelper.PHYSICAL_ATTACK:
-			case SpellHelper.RANGE_ATTACK:
-				result = "Both took " + Game.attackDamage + " damage.";
-				computersHP -= Game.attackDamage;
-				playersHP -= Game.attackDamage;
-			break;			
-			default:
-				result = "Player took " + Game.attackDamage + " damage.";
-				playersHP -= Game.attackDamage;
-			break;
-		}
-		
-		return result;
-	}
-
 	@Override
 	public String toString() 
 	{
@@ -405,14 +247,12 @@ public class Game implements Serializable
 	public ArrayList<String> getComputerSpells() {
 		return computerSpells;
 	}
-
 	
 	public int getPlayersHP() {
 		return playersHP;
 	}
 
-
 	public int getComputersHP() {
 		return computersHP;
-	}
+	}	
 }

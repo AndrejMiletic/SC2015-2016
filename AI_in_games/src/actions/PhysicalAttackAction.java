@@ -6,8 +6,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import gui.MainFrame;
+import helpers.GameLogic;
 import helpers.SpellHelper;
-import model.Game;
 
 /**
  * Akcija koja predstavlja magiju 'Physical Attack'.
@@ -22,7 +22,7 @@ public class PhysicalAttackAction extends AbstractAction{
 	{		
 		super("Physical Attack");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/physical_attack_icon.png"));
-		putValue(SHORT_DESCRIPTION, "Physical Attack - deals " + Game.attackDamage + " damage.");
+		putValue(SHORT_DESCRIPTION, "Physical Attack - deals " + GameLogic.attackDamage + " damage.");
 	}
 	
 	public void actionPerformed(ActionEvent e) 

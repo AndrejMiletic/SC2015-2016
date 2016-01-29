@@ -6,8 +6,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import gui.MainFrame;
+import helpers.GameLogic;
 import helpers.SpellHelper;
-import model.Game;
 
 /**
  * Akcija koja predstavlja magiju 'Block'.
@@ -23,7 +23,7 @@ public class BlockAction extends AbstractAction{
 		super("Block");
 		putValue(SMALL_ICON, new ImageIcon("resources/images/block_icon.png"));
 		putValue(SHORT_DESCRIPTION, "Block - mitigates a Physical Attacks and deals " + 
-									Game.blockDamage + " damage back to the attacker");
+				GameLogic.blockDamage + " damage back to the attacker");
 	}
 	
 	public void actionPerformed(ActionEvent e) 
