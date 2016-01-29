@@ -24,9 +24,15 @@ public class MainFrameWindowListener implements WindowListener{
 	public void windowClosing(WindowEvent e) 
 	{
 		ArrayList<Game> games;
+		MainFrame mf;
 		
-		games = MainFrame.getInstance().getGameManager().getPreviousGames();
-		FileDataProvider.writeGamesInFile(games);
+		mf = MainFrame.getInstance();		
+		games = mf.getGameManager().getPreviousGames();
+	
+		if(!mf.getActiveLearning())
+		{
+			FileDataProvider.writeGamesInFile(games);
+		}
 	}
 	
 	@Override

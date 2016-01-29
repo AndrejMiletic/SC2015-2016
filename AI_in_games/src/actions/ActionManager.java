@@ -14,6 +14,8 @@ public class ActionManager {
 	private RangeAttackAction rangeAttackAction;
 	private ArmorAction armorAction;
 	private GameRulesAction gameRulesAction;
+	private ActiveLearningAction activeLearningAction;
+	private EmptyFileAction emptyFileAction;
 	
 	public ActionManager() 
 	{
@@ -24,8 +26,18 @@ public class ActionManager {
 		rangeAttackAction = new RangeAttackAction();
 		armorAction = new ArmorAction();
 		gameRulesAction = new GameRulesAction();
+		activeLearningAction = new ActiveLearningAction();
+		emptyFileAction = new EmptyFileAction();
 	}
 	
+	public ActiveLearningAction getActiveLearningAction() {
+		return activeLearningAction;
+	}
+
+	public EmptyFileAction getEmptyFileAction() {
+		return emptyFileAction;
+	}
+
 	public PhysicalAttackAction getPhysicalAttackAction() 
 	{
 		return physicalAttackAction;

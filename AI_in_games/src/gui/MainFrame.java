@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import actions.ActionManager;
 import controller.GameManager;
+import controller.MainFrameWindowListener;
 import model.Game;
 
 /**
@@ -42,15 +43,21 @@ public class MainFrame extends JFrame
 	/**
 	 * Traka sa dugmetom za prikaz pravila igre.
 	 */
-	private GameRulesToolBar rulesBar;
+	private UtilitiesToolBar utilitiesToolBar;
 	
 	/**
 	 * panel na kom se prikazuje tok igre.
 	 */
 	private MainGamePanel gamePanel; 
 	
+	/**
+	 * Oznacava da li je aktivno ucenje ukljuceno.
+	 */
+	private Boolean activeLearning;
+	
 	public MainFrame() 
 	{
+		activeLearning = false;
 		actionManager = new ActionManager();
 		gameManager = new GameManager();
 	}
@@ -74,13 +81,15 @@ public class MainFrame extends JFrame
 		setLayout(new BorderLayout());	
 		
 		spellBar = new SpellBar();
-		rulesBar = new GameRulesToolBar();
+		utilitiesToolBar = new UtilitiesToolBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
 		gamePanel = new MainGamePanel();
 		
-		add(rulesBar, BorderLayout.NORTH);
+		add(utilitiesToolBar, BorderLayout.NORTH);
 		add(gamePanel, BorderLayout.CENTER);
 		add(spellBar, BorderLayout.SOUTH);
+		
+		addWindowListener(new MainFrameWindowListener());
 	}
 	
 
@@ -143,4 +152,14 @@ public class MainFrame extends JFrame
 		}
 		return instance;
 	}
+
+	public Boolean getActiveLearning() {
+		return activeLearning;
+	}
+
+	public void setActiveLearning(Boolean activeLearning) {
+		this.activeLearning = activeLearning;
+	}
+	
+	
 }

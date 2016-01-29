@@ -26,4 +26,9 @@ public class FileDataProvider
 	{
 		//dodati upisivanje u fajl
 	}
+	
+	public static void emptyFile()
+	{
+		//dodati praznjenje datoteke
+	}
 }

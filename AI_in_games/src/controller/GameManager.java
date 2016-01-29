@@ -58,6 +58,16 @@ public class GameManager
 		previousGames.add(currentGame);
 		currentGame = new Game();
 	}
+	
+	/**
+	 * Metoda koja usled ukljucivanja aktivnog ucenja cuva u datoteku do sada odigrane partije
+	 * i prazni listu prethodnih partija.
+	 */
+	public void activeLearningActivated() 
+	{
+		FileDataProvider.writeGamesInFile(previousGames);
+		previousGames = new ArrayList<Game>();
+	}
 
 	public ArrayList<Game> getPreviousGames() {
 		return previousGames;
@@ -66,6 +76,4 @@ public class GameManager
 	public Game getCurrentGame() {
 		return currentGame;
 	}
-	
-	
 }
