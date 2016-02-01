@@ -254,5 +254,15 @@ public class Game implements Serializable
 
 	public int getComputersHP() {
 		return computersHP;
+	}
+
+	public int getCurrentRound() {
+		return currentRound;
+	}
+
+	public void setCurrentRound(int currentRound) {
+		this.currentRound = currentRound;
 	}	
+	
+	
 }

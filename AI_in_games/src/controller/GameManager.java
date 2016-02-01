@@ -57,6 +57,7 @@ public class GameManager
 	{
 		previousGames.add(currentGame);
 		currentGame = new Game();
+		NGramAlgorithm.Initialize();
 	}
 	
 	/**
@@ -67,6 +68,7 @@ public class GameManager
 	{
 		FileDataProvider.writeGamesInFile(previousGames);
 		previousGames = new ArrayList<Game>();
+		NGramAlgorithm.Initialize();
 	}
 
 	public ArrayList<Game> getPreviousGames() {

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import actions.ActionManager;
+import algorithm.NGramAlgorithm;
 import controller.GameManager;
 import controller.MainFrameWindowListener;
 import model.Game;
@@ -84,6 +85,7 @@ public class MainFrame extends JFrame
 		utilitiesToolBar = new UtilitiesToolBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
 		gamePanel = new MainGamePanel();
+		NGramAlgorithm.Initialize();
 		
 		add(utilitiesToolBar, BorderLayout.NORTH);
 		add(gamePanel, BorderLayout.CENTER);
