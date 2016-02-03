@@ -78,4 +78,8 @@ public class GameManager
 	public Game getCurrentGame() {
 		return currentGame;
 	}
+	
+	public void setPreviousGames(ArrayList<Game> previousGames) {
+		this.previousGames = previousGames;
+	}
 }

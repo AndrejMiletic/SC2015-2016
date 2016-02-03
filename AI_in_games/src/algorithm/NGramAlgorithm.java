@@ -25,12 +25,14 @@ public class NGramAlgorithm {
 	private static Game currentGame;
 	private static ArrayList<Game> previousGames;
 	private static HashMap<String, Double> probability = new HashMap<String, Double>();
+	public static Random r;
 
 	public static void Initialize() {
-		maxN = 2;
+		maxN = 5;
 		gameManager = MainFrame.getInstance().getGameManager();
 		currentGame = gameManager.getCurrentGame();
 		previousGames = gameManager.getPreviousGames();
+		r = new Random();
 
 	}
 
@@ -38,7 +40,6 @@ public class NGramAlgorithm {
 		String result = null;
 		ArrayList<String> allSpells = SpellHelper.getAllSpells();
 		if (previousGames.size() == 0) {
-			Random r = new Random();
 			result = allSpells.get(r.nextInt(allSpells.size()));
 		} else {
 			ArrayList<String> moves;

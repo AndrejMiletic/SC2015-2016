@@ -20,6 +20,11 @@ public class GameLogic {
 	public static final transient int reflectDamage = 10;
 	
 	/**
+	 * Kolicina stete koju napadac prima ako mu je 'range' napad odbranjen.
+	 */
+	public static final transient int rangeArmorDamage= 3;
+	
+	/**
 	 * Maksimalan broj rundi u jednoj igri.
 	 */
 	public static final transient int maxRounds = 15;
@@ -31,7 +36,8 @@ public class GameLogic {
 		switch (playerSpell) 
 		{	
 			case SpellHelper.RANGE_ATTACK:
-				result = "Noone took any damage.";
+				result = "Player took " + GameLogic.rangeArmorDamage + " damage.";
+				currentGame.decreasePlayersHP(GameLogic.rangeArmorDamage);
 			break;
 			case SpellHelper.PHYSICAL_ATTACK:
 			case SpellHelper.MAGICAL_ATTACK:
@@ -39,7 +45,7 @@ public class GameLogic {
 				currentGame.decreaseComputersHP(GameLogic.attackDamage);
 			break;
 			default:
-				result = "Noone took any damage.";
+				result = "No one took any damage.";
 			break;
 		}
 		
@@ -53,7 +59,8 @@ public class GameLogic {
 		switch (playerSpell) 
 		{
 			case SpellHelper.ARMOR:
-				result = "Noone took any damage.";
+				result = "Computer took " + GameLogic.rangeArmorDamage + " damage.";
+				currentGame.decreaseComputersHP(GameLogic.rangeArmorDamage);
 			break;
 	
 			case SpellHelper.MAGICAL_ATTACK:
@@ -88,7 +95,7 @@ public class GameLogic {
 				currentGame.decreaseComputersHP(GameLogic.attackDamage);
 			break;
 			default:
-				result = "Noone took any damage.";
+				result = "No one took any damage.";
 			break;
 		}
 		
@@ -138,7 +145,7 @@ public class GameLogic {
 				currentGame.decreaseComputersHP(GameLogic.attackDamage);
 			break;
 			default:
-				result = "Noone took any damage.";
+				result = "No one took any damage.";
 			break;
 		}
 		
