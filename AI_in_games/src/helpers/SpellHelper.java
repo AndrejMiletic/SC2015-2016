@@ -41,7 +41,7 @@ public class SpellHelper
 	/**
 	 * Maksimalan broj koriscenja iste magije u jednoj igri.
 	 */
-	public static final int MAX_SPELL_COUNT = 3;
+	public static final int MAX_SPELL_COUNT = 5;
 	
 	/**
 	 * Metoda koja za prosledjeni naziv magije vraca onu koja joj kontrira.

@@ -7,22 +7,22 @@ public class GameLogic {
 	/**
 	 * Kolicina stete koja se nanosi bilo kojim napadom.
 	 */
-	public static final transient int attackDamage = 30;
+	public static final transient int attackDamage = 15;
 	
 	/**
 	 * Kolicina stete koju napadac prima ako mu je fizicki napad blokiran.
 	 */
-	public static final transient int blockDamage = 10;
+	public static final transient int blockDamage = 5;
 	
 	/**
 	 * Kolicina stete koju napadac prima ako mu je magicni napad reflektovan.
 	 */
-	public static final transient int reflectDamage = 15;
+	public static final transient int reflectDamage = 10;
 	
 	/**
 	 * Maksimalan broj rundi u jednoj igri.
 	 */
-	public static final transient int maxRounds = 10;
+	public static final transient int maxRounds = 15;
 	
 	public static String computerUsedArmor(String playerSpell, Game currentGame) 
 	{

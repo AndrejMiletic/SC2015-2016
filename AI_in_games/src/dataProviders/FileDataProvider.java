@@ -47,8 +47,6 @@ public class FileDataProvider
 				e.printStackTrace();
 			}
 		}
-		//System.out.println(games);
-		System.out.println(games.size());
 		return games;
 	}
 	
