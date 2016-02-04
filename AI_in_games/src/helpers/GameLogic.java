@@ -12,17 +12,17 @@ public class GameLogic {
 	/**
 	 * Kolicina stete koju napadac prima ako mu je fizicki napad blokiran.
 	 */
-	public static final transient int blockDamage = 5;
+	public static final transient int blockDamage = 15;
 	
 	/**
 	 * Kolicina stete koju napadac prima ako mu je magicni napad reflektovan.
 	 */
-	public static final transient int reflectDamage = 10;
+	public static final transient int reflectDamage = 15;
 	
 	/**
 	 * Kolicina stete koju napadac prima ako mu je 'range' napad odbranjen.
 	 */
-	public static final transient int rangeArmorDamage= 3;
+	public static final transient int rangeArmorDamage= 15;
 	
 	/**
 	 * Maksimalan broj rundi u jednoj igri.
