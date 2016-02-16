@@ -137,7 +137,7 @@ public class Game implements Serializable
 		rules.append("\nAny kind of attack deals " + GameLogic.attackDamage + " damage.");
 		rules.append("\nIf a Physical Attack is Blocked, the attacker gets " + GameLogic.blockDamage + " damage.");
 		rules.append("\nIf a Magic Attack is Spell Reflected, the attacker gets " + GameLogic.reflectDamage + " damage.");
-		rules.append("\nIf a Range Attack and Armor are used, the damage is fully mitigated.\n");
+		rules.append("\nIf a Range Attack and Armor are used, the attacker gets " + GameLogic.rangeArmorDamage + " damage.\n");
 		rules.append("\nMaximum number of rounds is " + GameLogic.maxRounds + ".");
 		rules.append("\nSame spell can be used only " + SpellHelper.MAX_SPELL_COUNT + " times in the same GameLogic.");
 		rules.append("\nGame ends if Player or Computer (or both) lose all health points, or if the maximum "
