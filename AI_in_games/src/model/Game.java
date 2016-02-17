@@ -262,6 +262,22 @@ public class Game implements Serializable
 
 	public void setCurrentRound(int currentRound) {
 		this.currentRound = currentRound;
+	}
+
+	public void setPlayerSpells(ArrayList<String> playerSpells) {
+		this.playerSpells = playerSpells;
+	}
+
+	public void setComputerSpells(ArrayList<String> computerSpells) {
+		this.computerSpells = computerSpells;
+	}
+
+	public int getWinner() {
+		return winner;
+	}
+
+	public void setWinner(int winner) {
+		this.winner = winner;
 	}	
 	
 	

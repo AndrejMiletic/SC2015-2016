@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import study.StudyHelperClass;
 import actions.ActionManager;
 import algorithm.NGramAlgorithm;
 import controller.GameManager;
@@ -85,7 +86,22 @@ public class MainFrame extends JFrame
 		utilitiesToolBar = new UtilitiesToolBar();
 		spellBar.setMinimumSize(new Dimension(400, 80));
 		gamePanel = new MainGamePanel();
-		NGramAlgorithm.Initialize();
+		
+		
+		
+		//NGramAlgorithm.Initialize(gameManager.getPreviousGames(), gameManager.getCurrentGame());
+		int alg1Wins=0;
+		int alg2Wins=0;
+		for (int i=0; i<1000; i++){
+			StudyHelperClass shc = new StudyHelperClass(6, 7, i);
+			shc.beginStudy();
+			if (shc.getAlgWinner()==1)
+				alg1Wins++;
+			else
+				alg2Wins++;
+		}
+		System.out.println("Alg1 won "+alg1Wins+" times, while alg2 won " + alg2Wins);
+		
 		
 		add(utilitiesToolBar, BorderLayout.NORTH);
 		add(gamePanel, BorderLayout.CENTER);
@@ -105,7 +121,7 @@ public class MainFrame extends JFrame
 		String roundLog, gameEndingLog;
 		Game currentGame;
 		
-		roundLog = gameManager.playNewRound(playerSpell);
+		roundLog = gameManager.playNewRound(playerSpell, 5);
 		gamePanel.showRoundResults(roundLog);
 		
 		/*

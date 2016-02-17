@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import controller.GameManager;
 import algorithm.NGramAlgorithm;
 import gui.MainFrame;
 import model.Game;
@@ -78,9 +79,10 @@ public class FileDataProvider
 	
 	public static void emptyFile()
 	{
+		GameManager gm = MainFrame.getInstance().getGameManager();
 		writeGamesInFile(new ArrayList<Game>());
 		fileEmptied = true;
 		MainFrame.getInstance().getGameManager().setPreviousGames(new ArrayList<Game>());
-		NGramAlgorithm.Initialize();
+		NGramAlgorithm.Initialize(gm.getPreviousGames(), gm.getCurrentGame());
 	}
 }

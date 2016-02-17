@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 
 import model.Game;
-import controller.GameManager;
 
 /**
  * @author Andrej Miletic
@@ -21,22 +20,21 @@ public class NGramAlgorithm {
 	 * Predstavlja koliko prethodnih poteza uzima u obzir
 	 */
 	private static int maxN;
-	private static GameManager gameManager;
 	private static Game currentGame;
 	private static ArrayList<Game> previousGames;
 	private static HashMap<String, Double> probability = new HashMap<String, Double>();
 	public static Random r;
 
-	public static void Initialize() {
+	public static void Initialize(ArrayList<Game> pg, Game g) {
 		maxN = 5;
-		gameManager = MainFrame.getInstance().getGameManager();
-		currentGame = gameManager.getCurrentGame();
-		previousGames = gameManager.getPreviousGames();
+		currentGame = g;
+		previousGames = pg;
 		r = new Random();
 
 	}
 
-	public static String getComputersSpell() {
+	public static String getComputersSpell(ArrayList<String> spells, int playerNumber, int maximumN) {
+		maxN = maximumN;
 		String result = null;
 		ArrayList<String> allSpells = SpellHelper.getAllSpells();
 		if (previousGames.size() == 0) {
@@ -45,14 +43,14 @@ public class NGramAlgorithm {
 			ArrayList<String> moves;
 			int round = currentGame.getCurrentRound();
 			int min = Math.min(maxN, round);
-			moves = new ArrayList<String>(currentGame.getPlayerSpells().subList(round - min, round));
-			result = nGram(min, moves);
+			moves = new ArrayList<String>(spells.subList(round - min, round));
+			result = nGram(min, moves, playerNumber);
 		}
 
 		return result;
 	}
 
-	private static String nGram(int n, ArrayList<String> moves) {
+	private static String nGram(int n, ArrayList<String> moves, int playerNumber) {
 		probability.put(SpellHelper.PHYSICAL_ATTACK, 0.0);
 		probability.put(SpellHelper.BLOCK, 0.0);
 		probability.put(SpellHelper.MAGICAL_ATTACK, 0.0);
@@ -66,7 +64,11 @@ public class NGramAlgorithm {
 		case 0:
 			for (Game game : previousGames) {
 				gameNumber++;
-				playerSpells = game.getPlayerSpells();
+				if (playerNumber == 1){
+					playerSpells = game.getPlayerSpells();
+				}else{
+					playerSpells = game.getComputerSpells();
+				}
 				probability.put(playerSpells.get(0), (double)probability.get(playerSpells.get(0)) + ((double)gameNumber/previousGames.size()));
 			}
 			result = SpellHelper.getCounter(getMaxEntry(probability).getKey());
@@ -74,7 +76,11 @@ public class NGramAlgorithm {
 		default:
 			for (Game game : previousGames) {
 				gameNumber++;
-				playerSpells = game.getPlayerSpells();
+				if (playerNumber == 1){
+					playerSpells = game.getPlayerSpells();
+				}else{
+					playerSpells = game.getComputerSpells();
+				}
 				for (int i = 0; i < playerSpells.size() - n; i++) {
 					if (playerSpells.get(i).equals(moves.get(0))) {
 						boolean correctSequence = true;
@@ -91,7 +97,7 @@ public class NGramAlgorithm {
 				}
 			}
 			if (getMaxEntry(probability).getValue()==0 && n>=1 && moves.size()>1){
-				result = nGram(n-1, new ArrayList<String>(moves.subList(1, moves.size())));
+				result = nGram(n-1, new ArrayList<String>(moves.subList(1, moves.size())), playerNumber);
 			}else{
 				result = SpellHelper.getCounter(getMaxEntry(probability).getKey());
 			}

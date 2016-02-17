@@ -1,5 +1,7 @@
 package controller;
 
+import gui.MainFrame;
+
 import java.util.ArrayList;
 
 import algorithm.NGramAlgorithm;
@@ -35,14 +37,14 @@ public class GameManager
 	 * @param playerSpell - magija koju je igrac odabrao.
 	 * @return log runde ako igra nije gotova ili {@code null} ako je gotova.
 	 */
-	public String playNewRound(String playerSpell)
+	public String playNewRound(String playerSpell, int maxN)
 	{
 		String retVal, computerSpell;
-		
+		int player = 1;
 		retVal = null;		
 		if(!currentGame.isOver())
 		{
-			computerSpell = NGramAlgorithm.getComputersSpell();
+			computerSpell = NGramAlgorithm.getComputersSpell(currentGame.getPlayerSpells(), player, maxN);
 			retVal = currentGame.playNewRound(computerSpell, playerSpell);
 		}
 		 
@@ -55,9 +57,10 @@ public class GameManager
 	 */
 	public void finishCurrentGame()
 	{
+		GameManager gm = MainFrame.getInstance().getGameManager();
 		previousGames.add(currentGame);
 		currentGame = new Game();
-		NGramAlgorithm.Initialize();
+		NGramAlgorithm.Initialize(gm.getPreviousGames(), gm.getCurrentGame());
 	}
 	
 	/**
@@ -66,9 +69,10 @@ public class GameManager
 	 */
 	public void activeLearningActivated() 
 	{
+		GameManager gm = MainFrame.getInstance().getGameManager();
 		FileDataProvider.writeGamesInFile(previousGames);
 		previousGames = new ArrayList<Game>();
-		NGramAlgorithm.Initialize();
+		NGramAlgorithm.Initialize(gm.getPreviousGames(), gm.getCurrentGame());
 	}
 
 	public ArrayList<Game> getPreviousGames() {
