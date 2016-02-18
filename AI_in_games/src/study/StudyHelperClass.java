@@ -65,7 +65,7 @@ public class StudyHelperClass {
 			}
 			if (gm.getCurrentGame().getWinner() == 1){
 				alg1Wins++;
-			}else if(gm.getCurrentGame().getWinner() == 1){
+			}else if(gm.getCurrentGame().getWinner() == 0){
 				draws++;
 			}else{
 				alg2Wins++;

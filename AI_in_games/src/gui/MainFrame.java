@@ -93,7 +93,7 @@ public class MainFrame extends JFrame
 		int alg1Wins=0;
 		int alg2Wins=0;
 		for (int i=0; i<1000; i++){
-			StudyHelperClass shc = new StudyHelperClass(6, 7, i);
+			StudyHelperClass shc = new StudyHelperClass(4, 15, i);
 			shc.beginStudy();
 			if (shc.getAlgWinner()==1)
 				alg1Wins++;
